@@ -30,6 +30,7 @@ public class Bullet_Controller : MonoBehaviour
         if (target.gameObject.name.Contains("Invader"))
         {
             Destroy(target.gameObject);
+            Destroy(gameObject);
         }
 
         if (target.gameObject.name.Contains("Death Wall"))
@@ -37,7 +38,7 @@ public class Bullet_Controller : MonoBehaviour
            Destroy(gameObject);
         }
 
-        if (target.gameObject.name.Contains("Shield"))
+        if (target.gameObject.name.Contains("shield_brick"))
         {
             Destroy(gameObject);
             //kill player / remove life
