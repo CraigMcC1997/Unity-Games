@@ -6,18 +6,19 @@ public class Invader_Bullet_Controller : MonoBehaviour
 {
     float moveSpeed;
     float translation;
+    SI_Score_Manager score;
 
     // Start is called before the first frame update
     void Start()
     {
-        //gameObject.SetActive(false);
         moveSpeed = 5.0f;
+        score = GameObject.Find("Score Manager").GetComponent<SI_Score_Manager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //once the bullet is active, move it up constantly
+        //once the bullet is active, move it down constantly
         if (gameObject.activeSelf)
         {
             transform.position -= new Vector3(0, moveSpeed * Time.deltaTime, 0);
@@ -29,15 +30,15 @@ public class Invader_Bullet_Controller : MonoBehaviour
     {
         if (target.gameObject.name.Contains("Paddle"))
         {
+            //TODO: LOSE A LIFE
             Destroy(gameObject);
-            //kill player / remove life
+            score.Hit_Paddle();
         }
 
         if (target.gameObject.name.Contains("shield_brick"))
         {
             Destroy(target.gameObject);
             Destroy(gameObject);
-            //kill player / remove life
         }
 
         if (target.gameObject.name.Contains("Death Wall"))

@@ -6,13 +6,12 @@ public class invader_controller : MonoBehaviour
 {
     public GameObject bullet;
 
-    float moveX = 0.01f;
+    float moveX = 3f;
+    float translation;
 
     void randomly_shoot_bullet()
     {
         float value = Random.Range(1, 5000);
-
-        Debug.Log(value);
 
         if (value == 364)
         {
@@ -22,14 +21,15 @@ public class invader_controller : MonoBehaviour
 
     void move_invader()
     {
-        transform.position += new Vector3(moveX, 0, 0);
+        translation = (moveX * Time.deltaTime);
+        transform.Translate(translation, 0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        randomly_shoot_bullet();
         move_invader();
+        randomly_shoot_bullet();
     }
 
     // Gets called at the start of the collision
@@ -39,7 +39,12 @@ public class invader_controller : MonoBehaviour
         {
             moveX *= -1;
             transform.position = new Vector3(transform.position.x, (transform.position.y - 0.3f), 0);
+        }
 
+        if (target.gameObject.name.Contains("Paddle"))
+        {
+            //TODO: KILL PLAYER / END THE GAME
+            Destroy(target.gameObject);
         }
     }
 }
