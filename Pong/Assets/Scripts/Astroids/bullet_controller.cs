@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class bullet_controller : MonoBehaviour
 {
+    A_Score_Manager score;
     Vector3 mousePos;
     Rigidbody2D rigidbody;
     public float force = 5.0f;
@@ -11,6 +12,7 @@ public class bullet_controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        score = GameObject.Find("Score Manager").GetComponent<A_Score_Manager>();
         rigidbody = GetComponent<Rigidbody2D>();
 
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -25,7 +27,14 @@ public class bullet_controller : MonoBehaviour
     {
         if (collision.gameObject.name.Contains("Asteroid"))
         {
+            score.Destroyed_Asteroid();
             Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.name.Contains("Wall"))
+        {
+            Debug.Log("Wall hit");
             Destroy(gameObject);
         }
     }
