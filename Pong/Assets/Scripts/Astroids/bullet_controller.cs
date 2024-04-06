@@ -20,4 +20,13 @@ public class bullet_controller : MonoBehaviour
         float rot_z = Mathf.Atan2(rotate.y, rotate.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 90.0f);
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name.Contains("Asteroid"))
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+    }
 }
