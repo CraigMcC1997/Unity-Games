@@ -8,4 +8,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Pong.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 244c42f0dc8c33743965bd3ca2a1430e
+  - enabled: 1
+    path: Assets/Scenes/Astroids.unity
+    guid: aa545f8d0776d0644966c6f7e9cd9fd1
+  - enabled: 1
+    path: Assets/Scenes/Brick Breaker.unity
+    guid: 654b7631b84cedd47bb11c15d6213684
+  - enabled: 1
+    path: Assets/Scenes/Space Invaders.unity
+    guid: 672624124348eed48ab8d27c0293eff9
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

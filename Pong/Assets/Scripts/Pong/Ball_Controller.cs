@@ -91,9 +91,16 @@ public class SphereController : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        //!! DEBUGGING CODE ONLY !!
         if (Input.GetKeyDown(KeyCode.R))
         {
             resetBall();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            m_Rigidbody.linearVelocity = new Vector3(0.0f, 0.0f, 0.0f);
+            thrust = 0.0f;
         }
     }
 }
