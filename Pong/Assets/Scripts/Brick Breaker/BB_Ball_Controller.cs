@@ -59,7 +59,7 @@ public class BB_Ball_Controller : MonoBehaviour
     void resetBall()
     {
         //reset the ball
-        m_Rigidbody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+        m_Rigidbody.linearVelocity = new Vector3(0.0f, 0.0f, 0.0f);
         m_Rigidbody.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
 
         //readd the forces to start the ball moving again

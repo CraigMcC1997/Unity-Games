@@ -23,6 +23,7 @@ public class Asteroid_controller : MonoBehaviour
     void Update()
     {
         move_obj = (direction * Time.deltaTime) * velocity;
+
         //allow the asteroid to keep moving along the direction
         transform.Translate(move_obj);
     }
@@ -37,7 +38,6 @@ public class Asteroid_controller : MonoBehaviour
 
         if (collision.gameObject.name.Contains("Wall"))
         {
-            Debug.Log("Wall hit");
             Destroy(gameObject);
         }
     }

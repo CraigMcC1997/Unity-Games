@@ -18,7 +18,7 @@ public class bullet_controller : MonoBehaviour
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 dir = mousePos - transform.position;
         Vector3 rotate = transform.position - mousePos;
-        rigidbody.velocity = new Vector2(dir.x, dir.y).normalized * force;
+        rigidbody.linearVelocity = new Vector2(dir.x, dir.y).normalized * force;
         float rot_z = Mathf.Atan2(rotate.y, rotate.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 90.0f);
     }
