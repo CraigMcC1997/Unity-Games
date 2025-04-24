@@ -15,7 +15,9 @@ public class invader_controller : MonoBehaviour
 
         if (value == 364)
         {
-            Instantiate(bullet, new Vector3(transform.position.x, (transform.position.y - 0.3f), 0.0f), Quaternion.identity);
+            //dont shoot if paused
+            if (Time.timeScale != 0)
+                Instantiate(bullet, new Vector3(transform.position.x, (transform.position.y - 0.3f), 0.0f), Quaternion.identity);
         }
     }
 
