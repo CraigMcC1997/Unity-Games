@@ -11,7 +11,8 @@ public class Asteroid_Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spawner();
+        if (Time.timeScale != 0)
+            spawner();
     }
 
     void spawner()

@@ -39,7 +39,7 @@ public class SI_Paddle_Controller : MonoBehaviour
 
     void FireBullet()
     {
-        if (bulletCount >= 3)
+        if ( (bulletCount >= 3) || (Time.timeScale == 0) )
         {
             return;
         }

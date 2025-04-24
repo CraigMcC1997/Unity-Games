@@ -21,14 +21,17 @@ public class shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 rotation = mousePos - transform.position;
-        float angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
-
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Time.timeScale != 0)
         {
-            Instantiate(bullet, firePoint.position, Quaternion.identity);
+            mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 rotation = mousePos - transform.position;
+            float angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                Instantiate(bullet, firePoint.position, Quaternion.identity);
+            }
         }
     }
 }
