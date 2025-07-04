@@ -6,8 +6,10 @@ public class SphereController : MonoBehaviour
 {
     Rigidbody2D m_Rigidbody;
     Score_Manager score;
+    AudioSource audioData;
     float thrust;
     const float BALL_VELOCITY = 300.0f;
+    
 
     private void rand_starting_direction()
     {
@@ -46,8 +48,26 @@ public class SphereController : MonoBehaviour
         //Fetch the Score Manager component
         score = GameObject.Find("Score Manager").GetComponent<Score_Manager>();
 
+        audioData = GetComponent<AudioSource>();
+
         //delay the ball before starting the game
         StartCoroutine(delay_start());
+    }
+
+    // Gets called at the start of the collision
+    void OnCollisionEnter2D(Collision2D target)
+    {
+        if ((target.gameObject.name == "Paddle - left")
+            || (target.gameObject.name == "Paddle - right"))
+        {
+            audioData.Play(0);
+        }
+
+        if ((target.gameObject.name == "Wall T")
+            || (target.gameObject.name == "Wall B"))
+        {
+            audioData.Play(0);
+        }
     }
 
     // Update is called once per frame
