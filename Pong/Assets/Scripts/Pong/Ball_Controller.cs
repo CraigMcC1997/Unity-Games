@@ -6,7 +6,8 @@ public class SphereController : MonoBehaviour
 {
     Rigidbody2D m_Rigidbody;
     Score_Manager score;
-    AudioSource audioData;
+    AudioSource Aud_bounce;
+    AudioSource Aud_score;
     float thrust;
     const float BALL_VELOCITY = 300.0f;
     
@@ -48,7 +49,9 @@ public class SphereController : MonoBehaviour
         //Fetch the Score Manager component
         score = GameObject.Find("Score Manager").GetComponent<Score_Manager>();
 
-        audioData = GetComponent<AudioSource>();
+        AudioSource[] audios = GetComponents<AudioSource>();
+        Aud_bounce = audios[0];
+        Aud_score = audios[1];
 
         //delay the ball before starting the game
         StartCoroutine(delay_start());
@@ -58,15 +61,13 @@ public class SphereController : MonoBehaviour
     void OnCollisionEnter2D(Collision2D target)
     {
         if ((target.gameObject.name == "Paddle - left")
-            || (target.gameObject.name == "Paddle - right"))
-        {
-            audioData.Play(0);
-        }
-
-        if ((target.gameObject.name == "Wall T")
+            || (target.gameObject.name == "Paddle - right")
+            || (target.gameObject.name == "Wall T")
             || (target.gameObject.name == "Wall B"))
         {
-            audioData.Play(0);
+            Aud_bounce.Play(0);
+            thrust += 5f;
+            m_Rigidbody.AddForce(m_Rigidbody.linearVelocity.normalized * thrust * Time.deltaTime);
         }
     }
 
@@ -77,26 +78,18 @@ public class SphereController : MonoBehaviour
 
         if(screenPos.x < 0)
         {
+            Aud_score.Play(0);
             resetBall();
             score.RightScored();
         }
 
         if(screenPos.x > Screen.width)
         {
+            Aud_score.Play(0);
             resetBall();
             score.LeftScored();
         }
-        
-        // //!! DEBUGGING CODE ONLY !!
-        // if (Input.GetKeyDown(KeyCode.R))
-        // {
-        //     resetBall();
-        // }
 
-        // if (Input.GetKeyDown(KeyCode.Space))
-        // {
-        //     m_Rigidbody.linearVelocity = new Vector3(0.0f, 0.0f, 0.0f);
-        //     thrust = 0.0f;
-        // }
+        Debug.Log(m_Rigidbody.linearVelocity);
     }
 }
