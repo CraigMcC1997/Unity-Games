@@ -9,7 +9,7 @@ public class SphereController : MonoBehaviour
     float thrust;
     const float BALL_VELOCITY = 300.0f;
 
-    private void starting_direction()
+    private void rand_starting_direction()
     {
         float starting_direction_x = Random.Range(1, 10);  // creates a number between 1 and 10
         float starting_direction_y = Random.Range(1, 10);
@@ -35,29 +35,13 @@ public class SphereController : MonoBehaviour
         }
     }
 
-    // Gets called at the start of the collision
-    void OnCollisionEnter2D(Collision2D target)
-    {
-        if (target.gameObject.name == "Wall L")
-        {
-            resetBall();
-            score.RightScored();
-        }
-
-        if (target.gameObject.name == "Wall R")
-        {
-            resetBall();
-            score.LeftScored();
-        }
-    }
-
     //Wait, then give the ball a velocity & direction
     IEnumerator delay_start()
     {
         yield return new WaitForSeconds(0.7f);
 
         thrust = BALL_VELOCITY;
-        starting_direction();
+        rand_starting_direction();
     }
 
     void resetBall()
@@ -71,19 +55,15 @@ public class SphereController : MonoBehaviour
         StartCoroutine(delay_start());
     }
 
-    public void init()
+    // from the start of the game, the ball will move to the left`
+    public void Start()
     {
         //Fetch the Rigidbody component you attach from your GameObject
         m_Rigidbody = GetComponent<Rigidbody2D>();
 
         //Fetch the Score Manager component
         score = GameObject.Find("Score Manager").GetComponent<Score_Manager>();
-    }
 
-    // from the start of the game, the ball will move to the left`
-    public void Start()
-    {
-        init();
         //delay the ball before starting the game
         StartCoroutine(delay_start());
     }
@@ -91,16 +71,30 @@ public class SphereController : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        //!! DEBUGGING CODE ONLY !!
-        if (Input.GetKeyDown(KeyCode.R))
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+
+        if(screenPos.x < 0)
         {
             resetBall();
+            score.RightScored();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(screenPos.x > Screen.width)
         {
-            m_Rigidbody.linearVelocity = new Vector3(0.0f, 0.0f, 0.0f);
-            thrust = 0.0f;
+            resetBall();
+            score.LeftScored();
         }
+        
+        // //!! DEBUGGING CODE ONLY !!
+        // if (Input.GetKeyDown(KeyCode.R))
+        // {
+        //     resetBall();
+        // }
+
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     m_Rigidbody.linearVelocity = new Vector3(0.0f, 0.0f, 0.0f);
+        //     thrust = 0.0f;
+        // }
     }
 }
