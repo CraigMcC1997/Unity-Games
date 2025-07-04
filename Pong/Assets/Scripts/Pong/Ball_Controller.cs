@@ -11,28 +11,10 @@ public class SphereController : MonoBehaviour
 
     private void rand_starting_direction()
     {
-        float starting_direction_x = Random.Range(1, 10);  // creates a number between 1 and 10
-        float starting_direction_y = Random.Range(1, 10);
+        float x = (Random.value < 0.5f ? -1.0f : 1.0f) * thrust;
+        float y = (Random.value < 0.5f ? -1.0f : 1.0f) * thrust;
 
-        // X axis
-        if (starting_direction_x % 2 == 0)
-        {
-            m_Rigidbody.AddForce(transform.right * thrust);
-        }
-        else
-        {
-            m_Rigidbody.AddForce(transform.right * -thrust);
-        }
-
-        // Y axis
-        if (starting_direction_y % 2 == 0)
-        {
-            m_Rigidbody.AddForce(transform.up * thrust);
-        }
-        else
-        {
-            m_Rigidbody.AddForce(transform.up * -thrust);
-        }
+        m_Rigidbody.AddForce(new Vector2(x,y));
     }
 
     //Wait, then give the ball a velocity & direction
