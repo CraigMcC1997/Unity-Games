@@ -4,21 +4,34 @@ using UnityEngine;
 
 public class Paddle_Controller1 : MonoBehaviour
 {
-    float moveSpeed;
+    public float moveSpeed;
     float translation;
 
     void Start()
     {
         //Set the speed of the GameObject
-        moveSpeed = 20.0f;
+        moveSpeed = 10.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        
+        if (Input.GetKey(KeyCode.W))
         {
-            translation = Input.GetAxis("Vertical") * moveSpeed;
+            //check if player reached screen boundaries
+            if(screenPos.y < Screen.height)
+                //translation = Input.GetAxis("Vertical") * moveSpeed;
+                translation = moveSpeed;
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            //check if player reached screen boundaries
+            if(screenPos.y > 0)
+                //translation = Input.GetAxis("Vertical") * moveSpeed;
+                translation = -moveSpeed;
         }
 
         // Make it move it per second instead of per frame
@@ -27,10 +40,4 @@ public class Paddle_Controller1 : MonoBehaviour
         // Move translation along the object's y-axis
         transform.Translate(0, translation, 0);
     }
-
-    //// Gets called at the start of the collision
-    //void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    Debug.Log("LEFT Entered collision with " + collision.gameObject.name);
-    //}
 }

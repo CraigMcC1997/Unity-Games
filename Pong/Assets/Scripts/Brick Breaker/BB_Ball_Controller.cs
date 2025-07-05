@@ -8,19 +8,14 @@ public class BB_Ball_Controller : MonoBehaviour
     Rigidbody2D m_Rigidbody;
     BB_Score_Manager score;
 
-    void init()
+    // Start is called before the first frame update
+    public void Start()
     {
         //Fetch the Rigidbody component you attach from your GameObject
         m_Rigidbody = GetComponent<Rigidbody2D>();
         //Set the speed of the GameObject
         thrust = 400;
         score = GameObject.Find("Score Manager").GetComponent<BB_Score_Manager>();
-    }
-
-    // Start is called before the first frame update
-    public void Start()
-    {
-        init();
 
         m_Rigidbody.AddForce(transform.right * thrust);
         m_Rigidbody.AddForce(transform.up * thrust);

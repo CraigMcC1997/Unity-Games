@@ -6,49 +6,18 @@ public class SphereController : MonoBehaviour
 {
     Rigidbody2D m_Rigidbody;
     Score_Manager score;
+    AudioSource Aud_bounce;
+    AudioSource Aud_score;
     float thrust;
     const float BALL_VELOCITY = 300.0f;
+    
 
-    private void starting_direction()
+    private void rand_starting_direction()
     {
-        float starting_direction_x = Random.Range(1, 10);  // creates a number between 1 and 10
-        float starting_direction_y = Random.Range(1, 10);
+        float x = (Random.value < 0.5f ? -1.0f : 1.0f) * thrust;
+        float y = (Random.value < 0.5f ? -1.0f : 1.0f) * thrust;
 
-        // X axis
-        if (starting_direction_x % 2 == 0)
-        {
-            m_Rigidbody.AddForce(transform.right * thrust);
-        }
-        else
-        {
-            m_Rigidbody.AddForce(transform.right * -thrust);
-        }
-
-        // Y axis
-        if (starting_direction_y % 2 == 0)
-        {
-            m_Rigidbody.AddForce(transform.up * thrust);
-        }
-        else
-        {
-            m_Rigidbody.AddForce(transform.up * -thrust);
-        }
-    }
-
-    // Gets called at the start of the collision
-    void OnCollisionEnter2D(Collision2D target)
-    {
-        if (target.gameObject.name == "Wall L")
-        {
-            resetBall();
-            score.RightScored();
-        }
-
-        if (target.gameObject.name == "Wall R")
-        {
-            resetBall();
-            score.LeftScored();
-        }
+        m_Rigidbody.AddForce(new Vector2(x,y));
     }
 
     //Wait, then give the ball a velocity & direction
@@ -57,7 +26,7 @@ public class SphereController : MonoBehaviour
         yield return new WaitForSeconds(0.7f);
 
         thrust = BALL_VELOCITY;
-        starting_direction();
+        rand_starting_direction();
     }
 
     void resetBall()
@@ -71,36 +40,54 @@ public class SphereController : MonoBehaviour
         StartCoroutine(delay_start());
     }
 
-    public void init()
+    // from the start of the game, the ball will move to the left`
+    public void Start()
     {
         //Fetch the Rigidbody component you attach from your GameObject
         m_Rigidbody = GetComponent<Rigidbody2D>();
 
         //Fetch the Score Manager component
         score = GameObject.Find("Score Manager").GetComponent<Score_Manager>();
-    }
 
-    // from the start of the game, the ball will move to the left`
-    public void Start()
-    {
-        init();
+        AudioSource[] audios = GetComponents<AudioSource>();
+        Aud_bounce = audios[0];
+        Aud_score = audios[1];
+
         //delay the ball before starting the game
         StartCoroutine(delay_start());
+    }
+
+    // Gets called at the start of the collision
+    void OnCollisionEnter2D(Collision2D target)
+    {
+        if ((target.gameObject.name == "Paddle - left")
+            || (target.gameObject.name == "Paddle - right")
+            || (target.gameObject.name == "Wall T")
+            || (target.gameObject.name == "Wall B"))
+        {
+            Aud_bounce.Play(0);
+            thrust += 5f;
+            m_Rigidbody.AddForce(m_Rigidbody.linearVelocity.normalized * thrust * Time.deltaTime);
+        }
     }
 
     // Update is called once per frame
     public void Update()
     {
-        //!! DEBUGGING CODE ONLY !!
-        if (Input.GetKeyDown(KeyCode.R))
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+
+        if(screenPos.x < 0)
         {
+            Aud_score.Play(0);
             resetBall();
+            score.RightScored();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(screenPos.x > Screen.width)
         {
-            m_Rigidbody.linearVelocity = new Vector3(0.0f, 0.0f, 0.0f);
-            thrust = 0.0f;
+            Aud_score.Play(0);
+            resetBall();
+            score.LeftScored();
         }
     }
 }
