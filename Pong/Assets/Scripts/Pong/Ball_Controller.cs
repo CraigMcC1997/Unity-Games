@@ -89,7 +89,5 @@ public class SphereController : MonoBehaviour
             resetBall();
             score.LeftScored();
         }
-
-        Debug.Log(m_Rigidbody.linearVelocity);
     }
 }
