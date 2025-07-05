@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Main Menu.unity
     guid: 244c42f0dc8c33743965bd3ca2a1430e
+  - enabled: 1
+    path: Assets/Scenes/Play Screen.unity
+    guid: 31f834eee317c4c76bba3c51a2e6833c
   - enabled: 0
     path: Assets/Scenes/Pong.unity
     guid: 2cda990e2423bbf4892e6590ba056729
