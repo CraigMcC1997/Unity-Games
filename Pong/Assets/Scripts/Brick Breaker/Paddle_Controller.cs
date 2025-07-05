@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class Paddle_Controller : MonoBehaviour
 {
-    float moveSpeed;
+    public float moveSpeed = 20.0f;
     float translation;
-    // Start is called before the first frame update
+
     void Start()
     {
-        moveSpeed = 20.0f;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-        {
-            translation = Input.GetAxis("Horizontal") * moveSpeed;
-        }
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+
+        if (screenPos.x > 0)
+            if (Input.GetKey(KeyCode.A))
+                translation = Input.GetAxis("Horizontal") * moveSpeed;
+
+        if (screenPos.x < Screen.width)
+            if (Input.GetKey(KeyCode.D))
+                translation = Input.GetAxis("Horizontal") * moveSpeed;
 
         // Make it move it per second instead of per frame
         translation *= Time.deltaTime;

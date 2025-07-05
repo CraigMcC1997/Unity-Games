@@ -11,7 +11,7 @@ public class Brick_Spawner : MonoBehaviour
     float currentY = 3.5f;
 
     const int maxBricksRows = 16;
-    const int maxBricksCols = 8;
+    const int maxBricksCols = 6;
 
     // Start is called before the first frame update
     void Start()

@@ -12,10 +12,10 @@ public class BB_Ball_Controller : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        //Fetch the Rigidbody component you attach from your GameObject
         m_Rigidbody = GetComponent<Rigidbody2D>();
-        //Set the speed of the GameObject
+        //Set the speed of the ball
         thrust = 250.0f;
+
         score = GameObject.Find("Score Manager").GetComponent<BB_Score_Manager>();
 
         x = (Random.value < 0.5f ? -1.0f : 1.0f) * thrust;
@@ -31,13 +31,12 @@ public class BB_Ball_Controller : MonoBehaviour
         {
             score.Died();
             resetBall();
-            Debug.Log("Ball hit the bottom wall");
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            resetBall();
-        }
+        // if (Input.GetKeyDown(KeyCode.R))
+        // {
+        //     resetBall();
+        // }
     }
 
     // Gets called at the start of the collision
@@ -46,7 +45,6 @@ public class BB_Ball_Controller : MonoBehaviour
         if (target.gameObject.name.Contains("brick"))
         {
             Destroy(target.gameObject);
-            Debug.Log("Ball hit BRICK");
             score.Scored();
             thrust += 1.0f;
         }
