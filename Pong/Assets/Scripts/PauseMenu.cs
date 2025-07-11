@@ -62,8 +62,8 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         GamePaused = false;
-        //SceneManager.LoadScene("Main Menu"); // !! temporarily commented out to avoid loading the main menu !!
-        SceneManager.LoadScene("Play Screen");
+        SceneManager.LoadScene("Main Menu"); // !! temporarily commented out to avoid loading the main menu on single game mode !!
+        //SceneManager.LoadScene("Play Screen"); // !! temporarily commented out to avoid loading the play menu !!
     }
 
     public void RestartGame()
