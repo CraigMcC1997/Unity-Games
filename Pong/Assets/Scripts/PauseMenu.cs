@@ -62,7 +62,16 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         GamePaused = false;
-        SceneManager.LoadScene("Main Menu");
+        //SceneManager.LoadScene("Main Menu"); // !! temporarily commented out to avoid loading the main menu !!
+        SceneManager.LoadScene("Play Screen");
+    }
+
+    public void RestartGame()
+    {
+        // Restart the current scene
+        Time.timeScale = 1f;
+        GamePaused = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ExitGame()

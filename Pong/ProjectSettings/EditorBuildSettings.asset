@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Main Menu.unity
+    path: Assets/Scenes/Game Screens/Main Menu.unity
     guid: 244c42f0dc8c33743965bd3ca2a1430e
   - enabled: 1
-    path: Assets/Scenes/Play Screen.unity
+    path: Assets/Scenes/Game Screens/Play Screen.unity
     guid: 31f834eee317c4c76bba3c51a2e6833c
   - enabled: 0
     path: Assets/Scenes/Pong.unity
@@ -23,5 +23,11 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Astroids.unity
     guid: aa545f8d0776d0644966c6f7e9cd9fd1
+  - enabled: 1
+    path: Assets/Scenes/Game Screens/Game Over.unity
+    guid: 717901d879be446308d355bd183ad674
+  - enabled: 1
+    path: Assets/Scenes/Game Screens/Game Win.unity
+    guid: 9cf3b75a61ebc43d09414deb7ca17743
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

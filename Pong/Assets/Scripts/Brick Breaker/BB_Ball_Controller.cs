@@ -9,6 +9,19 @@ public class BB_Ball_Controller : MonoBehaviour
     BB_Score_Manager score;
     float x;
 
+    private void rand_starting_direction()
+    {
+        x = (Random.value < 0.5f ? -1.0f : 1.0f) * thrust;
+        m_Rigidbody.AddForce(new Vector2(x, 1.0f * thrust));
+    }
+
+    IEnumerator delay_start()
+    {
+        yield return new WaitForSeconds(0.7f);
+
+        rand_starting_direction();
+    }
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -18,8 +31,8 @@ public class BB_Ball_Controller : MonoBehaviour
 
         score = GameObject.Find("Score Manager").GetComponent<BB_Score_Manager>();
 
-        x = (Random.value < 0.5f ? -1.0f : 1.0f) * thrust;
-        m_Rigidbody.AddForce(new Vector2(x, 1.0f * thrust));
+        //delay the ball before starting the game
+        StartCoroutine(delay_start());
     }
 
     // Update is called once per frame
@@ -27,7 +40,7 @@ public class BB_Ball_Controller : MonoBehaviour
     {
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
 
-        if(screenPos.y < 0)
+        if (screenPos.y < 0)
         {
             score.Died();
             resetBall();
@@ -56,7 +69,6 @@ public class BB_Ball_Controller : MonoBehaviour
         m_Rigidbody.linearVelocity = new Vector3(0.0f, 0.0f, 0.0f);
         m_Rigidbody.transform.position = new Vector3(0.0f, -2.5f, 0.0f);
 
-        x = (Random.value < 0.5f ? -1.0f : 1.0f) * thrust;
-        m_Rigidbody.AddForce(new Vector2(x, 1.0f * thrust));
+        rand_starting_direction();
     }
 }

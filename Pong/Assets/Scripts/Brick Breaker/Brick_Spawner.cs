@@ -5,15 +5,14 @@ using UnityEngine;
 public class Brick_Spawner : MonoBehaviour
 {
     public GameObject brick;
+    const int maxBricksRows = 16;
+    const int maxBricksCols = 6;
+    public int MAX_SCORE = maxBricksRows * maxBricksCols;
 
     const float startingX = -7.3f;
     float currentX = startingX;
     float currentY = 3.5f;
 
-    const int maxBricksRows = 16;
-    const int maxBricksCols = 6;
-
-    // Start is called before the first frame update
     void Start()
     {
         for (var i = 0; i < maxBricksCols; i++)

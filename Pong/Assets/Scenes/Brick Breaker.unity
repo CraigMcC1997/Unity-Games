@@ -338,6 +338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TextScore: {fileID: 1205729622}
   TextLives: {fileID: 311500325}
+  Brick_Spawner: {fileID: 1078710048}
 --- !u!1001 &282272747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -852,6 +853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brick: {fileID: 1199670488155561096, guid: 756bd6c110608494b9461cbbf95ad05c, type: 3}
+  MAX_SCORE: 96
 --- !u!4 &1078710050
 Transform:
   m_ObjectHideFlags: 0
