@@ -10,7 +10,7 @@ public class SphereController : MonoBehaviour
     AudioSource Aud_score;
     float thrust;
     const float BALL_VELOCITY = 300.0f;
-    
+
 
     private void rand_starting_direction()
     {

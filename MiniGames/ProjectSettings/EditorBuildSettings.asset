@@ -17,10 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Brick Breaker.unity
     guid: 654b7631b84cedd47bb11c15d6213684
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Space Invaders.unity
     guid: 672624124348eed48ab8d27c0293eff9
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Astroids.unity
     guid: aa545f8d0776d0644966c6f7e9cd9fd1
   - enabled: 1
