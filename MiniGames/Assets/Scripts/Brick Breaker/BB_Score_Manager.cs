@@ -19,26 +19,12 @@ public class BB_Score_Manager : MonoBehaviour
 
     public void Start()
     {
-        if (Brick_Spawner == null)
-        {
-            Debug.LogError("Brick_Spawner is not assigned in the BB_Score_Manager script.");
-            return;
-        }
-        if (Brick_Spawner.GetComponent<Brick_Spawner>() == null)
-        {
-            Debug.LogError("Brick_Spawner does not have a Brick_Spawner component.");
-            return;
-        }
-
         MAX_SCORE = Brick_Spawner.GetComponent<Brick_Spawner>().MAX_SCORE;
-        Debug.Log("Max Score: " + MAX_SCORE);
     }
 
     public void Scored()
     {
         Score++;
-        Debug.Log("Score: " + Score);
-        TextScore.text = "" + Score.ToString();
 
         if (Score >= MAX_SCORE)
         {
