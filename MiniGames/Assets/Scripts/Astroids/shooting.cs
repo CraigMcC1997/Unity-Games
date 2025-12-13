@@ -6,8 +6,6 @@ public class shooting : MonoBehaviour
 {
     private Camera cam;
     private Vector3 mousePos;
-    //private Vector3 rotation;
-    //private float angle;
 
     public GameObject bullet;
     public Transform firePoint;

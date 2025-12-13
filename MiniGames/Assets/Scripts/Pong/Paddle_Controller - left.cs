@@ -22,7 +22,6 @@ public class Paddle_Controller1 : MonoBehaviour
         {
             //check if player reached screen boundaries
             if(screenPos.y < Screen.height)
-                //translation = Input.GetAxis("Vertical") * moveSpeed;
                 translation = moveSpeed;
         }
 
@@ -30,7 +29,6 @@ public class Paddle_Controller1 : MonoBehaviour
         {
             //check if player reached screen boundaries
             if(screenPos.y > 0)
-                //translation = Input.GetAxis("Vertical") * moveSpeed;
                 translation = -moveSpeed;
         }
 
