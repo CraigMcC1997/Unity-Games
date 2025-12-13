@@ -5,7 +5,7 @@ using UnityEngine;
 public class SphereController : MonoBehaviour
 {
     Rigidbody2D m_Rigidbody;
-    Score_Manager score;
+    Score_Display_Manager score;
     AudioSource Aud_bounce;
     AudioSource Aud_score;
     float thrust;
@@ -47,7 +47,7 @@ public class SphereController : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody2D>();
 
         //Fetch the Score Manager component
-        score = GameObject.Find("Score Manager").GetComponent<Score_Manager>();
+        score = GameObject.Find("Score Manager").GetComponent<Score_Display_Manager>();
 
         AudioSource[] audios = GetComponents<AudioSource>();
         Aud_bounce = audios[0];
