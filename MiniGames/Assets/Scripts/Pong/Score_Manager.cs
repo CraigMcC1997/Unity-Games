@@ -91,6 +91,11 @@ public class Score_Manager : MonoBehaviour
         // !! FOOTBALL !!
         else if (GameMode == 2)
         {
+            if (timelimit <= 0)
+            {
+                // end game 
+                Debug.Log("Game Over! Final Score - Left: " + leftScore + " Right: " + rightScore);
+            }
             // Football Pong time limit logic would go here
             // This is a placeholder as time tracking is not implemented in this snippet
         }
