@@ -2,17 +2,24 @@ using UnityEngine;
 
 public class Score_Manager : MonoBehaviour
 {
-    int score = 0;
-    int scoreType = 0; // 0: Infinite, 1: Tennis, 2: Football
+    int leftScore = 0;
+    int rightScore = 0;
+
+    int GameMode = 0; // 0: Infinite, 1: Tennis, 2: Football
     int MAX_SCORE = 0; // if 0 then infinite
     int timelimit = 0; // 0 if no time limit
+
+    public Ball_Controller ball;
+    public Score_Display_Manager scoreDisplay;
+
+    AudioSource Aud_score;
     
     void Start()
     {
         // check the selected pong mode to set scoring type
-        scoreType = (int)DontDestroyMe.PongMode;
+        GameMode = (int)DontDestroyMe.PongMode;
 
-        switch (scoreType)
+        switch (GameMode)
         {
             case 0: // Infinite Pong
                 Debug.Log("Infinite Pong Mode Selected");
@@ -29,6 +36,63 @@ public class Score_Manager : MonoBehaviour
             default:
                 Debug.Log("Unknown Pong Mode Selected");
                 break;
+        }
+
+        Aud_score = GetComponent<AudioSource>();
+    }
+
+    void Update()
+    {
+        checkForScore();
+
+        if (GameMode != 0)  // only enter if not Infinite Pong
+            checkForGameEnd();
+    }
+
+    void checkForScore()
+    {
+       if (ball == null)
+            return;
+        
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(ball.transform.position);
+
+        if(screenPos.x < 0)
+        {
+            rightScore++;
+            Aud_score.Play(0);
+            ball.resetBall();
+            scoreDisplay.UpdateRightScoreText(rightScore);
+        }
+
+        else if(screenPos.x > Screen.width)
+        {
+            leftScore++;
+            Aud_score.Play(0);
+            ball.resetBall();
+            scoreDisplay.UpdateLeftScoreText(leftScore);
+        }
+    }
+
+    void checkForGameEnd()
+    {
+        // !! TENNIS !!
+        if (GameMode == 1)
+        {
+            if (MAX_SCORE > 0)
+            {
+                if (leftScore >= MAX_SCORE || rightScore >= MAX_SCORE)
+                {
+                    // End the game
+                    Debug.Log("Game Over! Final Score - Left: " + leftScore + " Right: " + rightScore);
+                    // Implement end game logic here (e.g., load end screen, display winner, etc.)
+                }
+            }
+        }
+        // !! FOOTBALL !!
+        else if (GameMode == 2)
+        {
+            // Football Pong time limit logic would go here
+            // This is a placeholder as time tracking is not implemented in this snippet
         }
     }
 

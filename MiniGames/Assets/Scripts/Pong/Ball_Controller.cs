@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SphereController : MonoBehaviour
+public class Ball_Controller : MonoBehaviour
 {
     Rigidbody2D m_Rigidbody;
-    Score_Display_Manager score;
+
     AudioSource Aud_bounce;
-    AudioSource Aud_score;
+    
     float thrust;
     const float BALL_VELOCITY = 300.0f;
-
 
     private void rand_starting_direction()
     {
@@ -29,7 +28,7 @@ public class SphereController : MonoBehaviour
         rand_starting_direction();
     }
 
-    void resetBall()
+    public void resetBall()
     {
         //reset ball position, velocity and direction (pause ball)
         m_Rigidbody.linearVelocity = new Vector3(0.0f, 0.0f, 0.0f);
@@ -46,12 +45,7 @@ public class SphereController : MonoBehaviour
         //Fetch the Rigidbody component you attach from your GameObject
         m_Rigidbody = GetComponent<Rigidbody2D>();
 
-        //Fetch the Score Manager component
-        score = GameObject.Find("Score Manager").GetComponent<Score_Display_Manager>();
-
-        AudioSource[] audios = GetComponents<AudioSource>();
-        Aud_bounce = audios[0];
-        Aud_score = audios[1];
+        Aud_bounce = GetComponent<AudioSource>();
 
         //delay the ball before starting the game
         StartCoroutine(delay_start());
@@ -68,26 +62,6 @@ public class SphereController : MonoBehaviour
             Aud_bounce.Play(0);
             thrust += 5f;
             m_Rigidbody.AddForce(m_Rigidbody.linearVelocity.normalized * thrust * Time.deltaTime);
-        }
-    }
-
-    // Update is called once per frame
-    public void Update()
-    {
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
-
-        if(screenPos.x < 0)
-        {
-            Aud_score.Play(0);
-            resetBall();
-            score.RightScored();
-        }
-
-        if(screenPos.x > Screen.width)
-        {
-            Aud_score.Play(0);
-            resetBall();
-            score.LeftScored();
         }
     }
 }
