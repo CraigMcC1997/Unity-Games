@@ -17,8 +17,8 @@ public class DontDestroyMe : MonoBehaviour
     public enum PongModes
     {
         InfinitePong,
-        TennisPong,
-        FootballPong
+        ScoreLimitPong,
+        CountdownPong
     }
 
     public static PongModes PongMode = PongModes.InfinitePong;

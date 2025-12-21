@@ -25,21 +25,21 @@ public class MenuController : MonoBehaviour
         PlayPong();
     }
 
-    public void TennisPong()
+    public void ScoreLimitPong()
     {
         // Load the game scene
-        //TODO: Add variable to set mode to tennis pong
+        //TODO: Add variable to set mode to ScoreLimit pong
         // rules: first to 11 points wins
-        DontDestroyMe.PongMode = DontDestroyMe.PongModes.TennisPong;
+        DontDestroyMe.PongMode = DontDestroyMe.PongModes.ScoreLimitPong;
         PlayPong();
     }
 
-    public void FootballPong()
+    public void CountdownPong()
     {
         // Load the game scene
-        //TODO: Add variable to set mode to football pong
+        //TODO: Add variable to set mode to Countdown pong
         // rules: timer counts  down, 2 halves of 2 minutes each
-        DontDestroyMe.PongMode = DontDestroyMe.PongModes.FootballPong;
+        DontDestroyMe.PongMode = DontDestroyMe.PongModes.CountdownPong;
         PlayPong();
     }
 

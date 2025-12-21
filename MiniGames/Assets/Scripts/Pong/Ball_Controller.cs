@@ -19,7 +19,7 @@ public class Ball_Controller : MonoBehaviour
         m_Rigidbody.AddForce(new Vector2(x,y));
     }
 
-    //Wait, then give the ball a velocity & direction
+    // Wait, then give the ball a velocity & direction
     IEnumerator delay_start()
     {
         yield return new WaitForSeconds(0.7f);
@@ -39,7 +39,7 @@ public class Ball_Controller : MonoBehaviour
         StartCoroutine(delay_start());
     }
 
-    // from the start of the game, the ball will move to the left`
+    // From the start of the game, the ball will move to the left
     public void Start()
     {
         //Fetch the Rigidbody component you attach from your GameObject

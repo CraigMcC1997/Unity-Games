@@ -6,12 +6,15 @@ public class Score_Manager : MonoBehaviour
     int leftScore = 0;
     int rightScore = 0;
 
-    int GameMode = 0; // 0: Infinite, 1: Tennis, 2: Football
+    int GameMode = 0; // 0: Infinite, 1: ScoreLimit, 2: Countdown
     int MAX_SCORE = 0; // if 0 then infinite
     int timelimit = 0; // 0 if no time limit
 
     public Ball_Controller ball;
     public Score_Display_Manager scoreDisplay;
+    public TimerScript timer;
+    public GameObject timerTextObject;
+    public GameObject TimerBackgroundObject;
 
     AudioSource Aud_score;
     
@@ -26,13 +29,13 @@ public class Score_Manager : MonoBehaviour
                 Debug.Log("Infinite Pong Mode Selected");
                 setInfinitePong();
                 break;
-            case 1: // Tennis Pong
-                Debug.Log("Tennis Pong Mode Selected");
-                setTennisPong();
+            case 1: // ScoreLimit Pong
+                Debug.Log("ScoreLimit Pong Mode Selected");
+                setScoreLimitPong();
                 break;
-            case 2: // Football Pong
-                Debug.Log("Football Pong Mode Selected");
-                setFootballPong();
+            case 2: // Countdown Pong
+                Debug.Log("Countdown Pong Mode Selected");
+                setCountdownPong();
                 break;
             default:
                 Debug.Log("Unknown Pong Mode Selected");
@@ -40,6 +43,8 @@ public class Score_Manager : MonoBehaviour
         }
 
         Aud_score = GetComponent<AudioSource>();
+        timerTextObject.SetActive(GameMode == 2); // only show timer for countdown Pong
+        TimerBackgroundObject.SetActive(GameMode == 2); // only show timer background for countdown Pong
     }
 
     void Update()
@@ -84,7 +89,7 @@ public class Score_Manager : MonoBehaviour
 
     void checkForGameEnd()
     {
-        // !! TENNIS !!
+        // !! ScoreLimit !!
         if (GameMode == 1)
         {
             if (MAX_SCORE > 0)
@@ -98,7 +103,7 @@ public class Score_Manager : MonoBehaviour
                 }
             }
         }
-        // !! FOOTBALL !!
+        // !! Countdown !!
         else if (GameMode == 2)
         {
             if (timelimit <= 0)
@@ -108,7 +113,7 @@ public class Score_Manager : MonoBehaviour
                 SceneManager.LoadScene("Pong Game Over Screen");
                 Debug.Log("Game Over! Final Score - Left: " + leftScore + " Right: " + rightScore);
             }
-            // Football Pong time limit logic would go here
+            // Countdown Pong time limit logic would go here
             // This is a placeholder as time tracking is not implemented in this snippet
         }
     }
@@ -121,20 +126,21 @@ public class Score_Manager : MonoBehaviour
         timelimit = 0;
     }
 
-    void setTennisPong()
+    void setScoreLimitPong()
     {
-        // Tennis Pong mode logic
+        // ScoreLimit Pong mode logic
         // rules: first to 11 points wins
         MAX_SCORE = 3;
         timelimit = 0;
     }
 
-    void setFootballPong()
+    void setCountdownPong()
     {
-        // Football Pong mode logic
+        // Countdown Pong mode logic
         // rules: two halves, most goals wins
-        MAX_SCORE = 0; // score limit not used in Football Pong, time limit based
-        timelimit = 240; // 2 halves of 2 minutes each = 4 minutes total
+        MAX_SCORE = 0; // score limit not used in Countdown Pong, time limit based
+        timelimit = 100; // 2 halves of 2 minutes each = 4 minutes total
+        timer.StartTimer(timelimit);
     }
 
 }

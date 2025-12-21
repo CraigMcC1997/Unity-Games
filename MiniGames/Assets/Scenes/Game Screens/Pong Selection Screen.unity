@@ -647,7 +647,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2009802227}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: FootballPong
+        m_MethodName: CountdownPong
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1545,7 +1545,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2009802227}
         m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: TennisPong
+        m_MethodName: ScoreLimitPong
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
