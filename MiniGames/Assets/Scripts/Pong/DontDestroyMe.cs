@@ -22,10 +22,4 @@ public class DontDestroyMe : MonoBehaviour
     }
 
     public static PongModes PongMode = PongModes.InfinitePong;
-
-    public void SetPongMode(PongModes mode)
-    {
-        PongMode = mode;
-    }
-
 }

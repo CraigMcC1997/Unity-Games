@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Score_Manager : MonoBehaviour
 {
@@ -49,6 +50,14 @@ public class Score_Manager : MonoBehaviour
             checkForGameEnd();
     }
 
+    void SaveScores()
+    {
+        PlayerPrefs.SetInt("PongLeftScore", leftScore);
+        PlayerPrefs.SetInt("PongRightScore", rightScore);
+        PlayerPrefs.Save();
+        Debug.Log("Scores saved: Left=" + leftScore + " Right=" + rightScore);
+    }
+
     void checkForScore()
     {
        if (ball == null)
@@ -83,7 +92,8 @@ public class Score_Manager : MonoBehaviour
                 if (leftScore >= MAX_SCORE || rightScore >= MAX_SCORE)
                 {
                     // End the game
-                    Debug.Log("Game Over! Final Score - Left: " + leftScore + " Right: " + rightScore);
+                    SaveScores();
+                    SceneManager.LoadScene("Pong Game Over Screen");
                     // Implement end game logic here (e.g., load end screen, display winner, etc.)
                 }
             }
@@ -94,6 +104,8 @@ public class Score_Manager : MonoBehaviour
             if (timelimit <= 0)
             {
                 // end game 
+                SaveScores();
+                SceneManager.LoadScene("Pong Game Over Screen");
                 Debug.Log("Game Over! Final Score - Left: " + leftScore + " Right: " + rightScore);
             }
             // Football Pong time limit logic would go here
@@ -113,7 +125,7 @@ public class Score_Manager : MonoBehaviour
     {
         // Tennis Pong mode logic
         // rules: first to 11 points wins
-        MAX_SCORE = 11;
+        MAX_SCORE = 3;
         timelimit = 0;
     }
 
