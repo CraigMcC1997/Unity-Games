@@ -12,19 +12,21 @@ public class BB_Score_Manager : MonoBehaviour
     int Score = 0;
     int lives = 3;
 
-    public TMP_Text TextScore;
-    public TMP_Text TextLives;
 
-    public GameObject Brick_Spawner;
+    public Brick_Spawner Brick_Spawner;
+    public UIDisplayManager uiDisplayManager;
 
     public void Start()
     {
-        MAX_SCORE = Brick_Spawner.GetComponent<Brick_Spawner>().MAX_SCORE;
+        MAX_SCORE = Brick_Spawner.GetMaxScore();
+        uiDisplayManager.UpdateScoreText(Score, MAX_SCORE);
+        uiDisplayManager.UpdateLivesText(lives);
     }
 
     public void Scored()
     {
         Score++;
+        uiDisplayManager.UpdateScoreText(Score, MAX_SCORE);
 
         if (Score >= MAX_SCORE)
         {
@@ -42,7 +44,7 @@ public class BB_Score_Manager : MonoBehaviour
         else
         {
             lives--;
-            TextLives.text = "" + lives.ToString();
+            uiDisplayManager.UpdateLivesText(lives);
         }
     }
 }

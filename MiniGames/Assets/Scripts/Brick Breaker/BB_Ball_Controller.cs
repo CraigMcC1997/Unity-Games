@@ -6,7 +6,7 @@ public class BB_Ball_Controller : MonoBehaviour
 {
     float thrust;
     Rigidbody2D m_Rigidbody;
-    BB_Score_Manager score;
+    public BB_Score_Manager score;
     float x;
 
     private void rand_starting_direction()
@@ -28,8 +28,6 @@ public class BB_Ball_Controller : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody2D>();
         //Set the speed of the ball
         thrust = 250.0f;
-
-        score = GameObject.Find("Score Manager").GetComponent<BB_Score_Manager>();
 
         //delay the ball before starting the game
         StartCoroutine(delay_start());

@@ -26,4 +26,9 @@ public class Brick_Spawner : MonoBehaviour
             currentY -= 0.5F;
         }
     }
+
+    public int GetMaxScore()
+    {
+        return MAX_SCORE;
+    }
 }
