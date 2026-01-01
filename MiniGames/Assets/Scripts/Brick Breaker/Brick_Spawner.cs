@@ -13,18 +13,23 @@ public class Brick_Spawner : MonoBehaviour
     float currentX = startingX;
     float currentY = 3.5f;
 
-    void Start()
+    void CreateBrickLayout()
     {
         for (var i = 0; i < maxBricksCols; i++)
         {
             for (var j = 0; j < maxBricksRows; j++)
             {
-                Instantiate(brick, new Vector3(currentX * 1.0f, currentY, 0), Quaternion.identity);
+                Instantiate(brick, new Vector3(currentX, currentY, 0), Quaternion.identity);
                 currentX += 1;
             }
             currentX = startingX;
             currentY -= 0.5F;
         }
+    }
+
+    void Start()
+    {
+        CreateBrickLayout();
     }
 
     public int GetMaxScore()
