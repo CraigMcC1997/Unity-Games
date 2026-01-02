@@ -5,15 +5,14 @@ using UnityEngine;
 public class Brick_Spawner : MonoBehaviour
 {
     public GameObject brick;
-    const int maxBricksRows = 16;
-    const int maxBricksCols = 6;
-    public int MAX_SCORE = maxBricksRows * maxBricksCols;
+    const int maxBricksRows = 1;
+    const int maxBricksCols = 1;
 
     const float startingX = -7.3f;
     float currentX = startingX;
     float currentY = 3.5f;
 
-    void CreateBrickLayout()
+    public void CreateBrickLayout()
     {
         for (var i = 0; i < maxBricksCols; i++)
         {
@@ -27,13 +26,13 @@ public class Brick_Spawner : MonoBehaviour
         }
     }
 
+    public int GetBrickCount()
+    {
+        return maxBricksCols * maxBricksRows;
+    }
+
     void Start()
     {
         CreateBrickLayout();
-    }
-
-    public int GetMaxScore()
-    {
-        return MAX_SCORE;
     }
 }

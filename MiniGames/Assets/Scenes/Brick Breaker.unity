@@ -368,6 +368,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   uiDisplayManager: {fileID: 716151498}
+  scoreManager: {fileID: 210662819}
+  brickSpawner: {fileID: 1078710049}
 --- !u!4 &279213002
 Transform:
   m_ObjectHideFlags: 0
@@ -1185,7 +1187,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brick: {fileID: 1199670488155561096, guid: 756bd6c110608494b9461cbbf95ad05c, type: 3}
-  MAX_SCORE: 96
 --- !u!4 &1078710050
 Transform:
   m_ObjectHideFlags: 0
@@ -1286,7 +1287,7 @@ Transform:
   m_GameObject: {fileID: 1171674989}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1310.5824, y: -703.9174, z: 0}
+  m_LocalPosition: {x: -1309.58, y: -704.34, z: 0}
   m_LocalScale: {x: 0.2740454, y: 0.2740454, z: 0.2740454}
   m_ConstrainProportionsScale: 0
   m_Children: []
