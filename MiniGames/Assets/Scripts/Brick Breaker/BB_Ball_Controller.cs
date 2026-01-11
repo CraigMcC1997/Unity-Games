@@ -30,7 +30,10 @@ public class BB_Ball_Controller : MonoBehaviour
         thrust = 250.0f;
 
         //delay the ball before starting the game
-        StartCoroutine(delay_start());
+        if (gameObject.name.Contains("Main Ball"))
+            StartCoroutine(delay_start());
+        else
+            rand_starting_direction();
     }
 
     // Update is called once per frame
@@ -38,10 +41,15 @@ public class BB_Ball_Controller : MonoBehaviour
     {
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
 
-        if (screenPos.y < 0)
+        if (screenPos.y < 0 && gameObject.name.Contains("Main Ball"))
         {
             score.Died();
             resetBall();
+        }
+        else
+        if (screenPos.y < 0)
+        {
+            Destroy(gameObject);
         }
 
         // if (Input.GetKeyDown(KeyCode.R))
@@ -50,14 +58,19 @@ public class BB_Ball_Controller : MonoBehaviour
         // }
     }
 
+    public void IncreaseSpeed()
+    {
+        thrust += 1.0f;
+    }
+
     // Gets called at the start of the collision
     void OnCollisionEnter2D(Collision2D target)
     {
-        if (target.gameObject.name.Contains("brick"))
+        if (target.gameObject.name.Contains("Brick"))
         {
             Destroy(target.gameObject);
             score.Scored();
-            thrust += 1.0f;
+            IncreaseSpeed();
         }
     }
 

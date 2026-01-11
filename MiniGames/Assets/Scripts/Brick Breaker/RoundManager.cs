@@ -26,7 +26,7 @@ public class RoundManager : MonoBehaviour
     {
         if (currentRound >= MAX_ROUNDS)
         {
-            SceneManager.LoadScene("Game Win");
+            SceneManager.LoadScene("Game Won");
         }
     }
 

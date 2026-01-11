@@ -7,9 +7,18 @@ public class Paddle_Controller : MonoBehaviour
     public float moveSpeed = 20.0f;
     float translation;
 
-    void Start()
+    public void increasePaddleSize()
     {
+        Vector3 currentScale = this.transform.localScale;
+        currentScale.x += 5.0f;
+        this.transform.localScale = currentScale;
+    }
 
+    public void decreasePaddleSize()
+    {
+        Vector3 currentScale = this.transform.localScale;
+        currentScale.x -= 5.0f;
+        this.transform.localScale = currentScale;
     }
 
     // Update is called once per frame
