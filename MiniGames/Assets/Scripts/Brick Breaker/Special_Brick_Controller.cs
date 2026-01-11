@@ -3,11 +3,16 @@ using UnityEngine;
 public class Special_Brick_Controller : MonoBehaviour
 {
     public GameObject Balls_Prefab;
-    public Paddle_Controller paddleController;
+    Paddle_Controller paddleController;
+
+    void Start()
+    {
+        paddleController = GameObject.Find("paddle").GetComponent<Paddle_Controller>();
+    }
 
     public void randomPickPowerUp()
     {
-        int PowerUpsCount = 4;
+        int PowerUpsCount = 3;
 
         int randPowerUp = Random.Range(0, PowerUpsCount);
         Debug.Log("Picked power up: " + randPowerUp);
@@ -23,9 +28,9 @@ public class Special_Brick_Controller : MonoBehaviour
             case 2:
                 decreasePaddleSize();
                 break;
-            case 3:
-                increaseBallSpeed();
-                break;
+            // case 3:
+            //     increaseBallSpeed();
+            //     break;
             default:
                 Debug.Log("No power up selected.");
                 break;
@@ -51,12 +56,12 @@ public class Special_Brick_Controller : MonoBehaviour
         paddleController.decreasePaddleSize();
     }
 
-    void increaseBallSpeed()
-    {
-        Debug.Log("Increasing ball speed!");
-        var ball = GameObject.Find("Main Ball");
-        ball.GetComponent<BB_Ball_Controller>().IncreaseSpeed(50.0f);
-    }
+    // void increaseBallSpeed()
+    // {
+    //     Debug.Log("Increasing ball speed!");
+    //     var ball = GameObject.Find("Main Ball");
+    //     ball.GetComponent<BB_Ball_Controller>().IncreaseSpeed(50.0f);
+    // }
 
     void OnDestroy()
     {

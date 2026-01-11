@@ -20,7 +20,7 @@ public class Brick_Spawner : MonoBehaviour
     void addSpecialBricks()
     {
         //randomly replace some bricks with special bricks
-        int numSpecialBricks = Random.Range(1, (totalBricks / 8));
+        int numSpecialBricks = Random.Range(1, (totalBricks / 6));
 
         Debug.Log("Adding " + numSpecialBricks + " special bricks.");
 
@@ -45,7 +45,7 @@ public class Brick_Spawner : MonoBehaviour
         {
             for (var j = 0; j < maxBricksCols; j++)
             {
-                bricks[totalBricks] = Instantiate(specialBrick, new Vector3(currentX, currentY, 0), Quaternion.identity);
+                bricks[totalBricks] = Instantiate(brick, new Vector3(currentX, currentY, 0), Quaternion.identity);
                 totalBricks++;
                 currentX += 1;
             }
@@ -53,7 +53,7 @@ public class Brick_Spawner : MonoBehaviour
             currentY -= 0.5F;
         }
 
-        //addSpecialBricks();
+        addSpecialBricks();
     }
 
     public int GetBrickCount()

@@ -10,14 +10,14 @@ public class Paddle_Controller : MonoBehaviour
     public void increasePaddleSize()
     {
         Vector3 currentScale = this.transform.localScale;
-        currentScale.x += 5.0f;
+        currentScale.x += 1.0f;
         this.transform.localScale = currentScale;
     }
 
     public void decreasePaddleSize()
     {
         Vector3 currentScale = this.transform.localScale;
-        currentScale.x -= 5.0f;
+        currentScale.x -= 1.0f;
         this.transform.localScale = currentScale;
     }
 
