@@ -58,15 +58,16 @@ public class BB_Ball_Controller : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // if (Input.GetKeyDown(KeyCode.R))
-        // {
-        //     resetBall();
-        // }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            resetBall();
+        }
     }
 
     public void IncreaseSpeed(float speed = 5.0f)
     {
         thrust += speed;
+        // m_Rigidbody.AddForce(new Vector2(x, 1.0f * thrust));
     }
 
     // Gets called at the start of the collision

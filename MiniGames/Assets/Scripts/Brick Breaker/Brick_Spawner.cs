@@ -20,7 +20,8 @@ public class Brick_Spawner : MonoBehaviour
     void addSpecialBricks()
     {
         //randomly replace some bricks with special bricks
-        int numSpecialBricks = Random.Range(1, (totalBricks / 6));
+        // int numSpecialBricks = Random.Range(1, (totalBricks / 4));
+        int numSpecialBricks = (totalBricks / 4);
 
         Debug.Log("Adding " + numSpecialBricks + " special bricks.");
 

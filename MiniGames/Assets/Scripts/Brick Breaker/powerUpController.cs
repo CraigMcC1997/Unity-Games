@@ -11,6 +11,16 @@ public class powerUpController : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0, -2.0f);
     }
 
+    void Update()
+    {
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+
+        if (screenPos.y < 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D target)
     {
         if (target.gameObject.name.Contains("paddle"))
