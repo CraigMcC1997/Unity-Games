@@ -46,6 +46,7 @@ public class Brick_Spawner : MonoBehaviour
             for (var j = 0; j < maxBricksCols; j++)
             {
                 bricks[totalBricks] = Instantiate(brick, new Vector3(currentX, currentY, 0), Quaternion.identity);
+                // bricks[totalBricks] = Instantiate(specialBrick, new Vector3(currentX, currentY, 0), Quaternion.identity);
                 totalBricks++;
                 currentX += 1;
             }

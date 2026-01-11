@@ -7,6 +7,7 @@ public class BB_Ball_Controller : MonoBehaviour
     float thrust;
     Rigidbody2D m_Rigidbody;
     public BB_Score_Manager score;
+    public Special_Brick_Controller specialBrickController;
     float x;
 
     private void rand_starting_direction()
@@ -71,12 +72,18 @@ public class BB_Ball_Controller : MonoBehaviour
     // Gets called at the start of the collision
     void OnCollisionEnter2D(Collision2D target)
     {
+        if (target.gameObject.name.Contains("Special"))
+        {
+            specialBrickController.spawnPowerUp(target.gameObject.transform.position);
+        }
+
         if (target.gameObject.name.Contains("Brick"))
         {
-            Destroy(target.gameObject);
             score.Scored();
             IncreaseSpeed();
+            Destroy(target.gameObject);
         }
+
     }
 
     void resetBall()

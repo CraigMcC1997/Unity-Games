@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1199670488155561096}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.965354, y: 3.544031, z: 0}
+  m_LocalPosition: {x: -6.965354, y: 3.483, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -127,7 +127,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.002128601, y: -0.20966637}
+  m_Offset: {x: -0.002128601, y: -0.00095927715}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -137,7 +137,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.9701996, y: 0.2188065}
+  m_Size: {x: 0.9701996, y: 0.18749738}
   m_EdgeRadius: 0
 --- !u!114 &8400291857139586429
 MonoBehaviour:
@@ -151,5 +151,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c11d48ba8cac3a18a0b0b07d57ac9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  Balls_Prefab: {fileID: 2477883697321704119, guid: a0906d1071a760d44aa149d25426707c, type: 3}
-  paddleController: {fileID: 1812793110347512628, guid: 62ef7e8ffbecd404b983f40d286f13b0, type: 3}
+  powerUp: {fileID: 4841944829379348997, guid: 2de7e29eddbd84af6acf94b7ac8a7a76, type: 3}

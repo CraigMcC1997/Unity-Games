@@ -397,6 +397,10 @@ PrefabInstance:
       propertyPath: score
       value: 
       objectReference: {fileID: 210662819}
+    - target: {fileID: 592664914422785881, guid: a0906d1071a760d44aa149d25426707c, type: 3}
+      propertyPath: specialBrickController
+      value: 
+      objectReference: {fileID: 8400291857139586429, guid: 05a27c51c86c1a80ab462686b966d654, type: 3}
     - target: {fileID: 2477883697321704119, guid: a0906d1071a760d44aa149d25426707c, type: 3}
       propertyPath: m_Name
       value: Main Ball
@@ -427,7 +431,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4054599811563316916, guid: a0906d1071a760d44aa149d25426707c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.72
+      value: -2.43
       objectReference: {fileID: 0}
     - target: {fileID: 4054599811563316916, guid: a0906d1071a760d44aa149d25426707c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1575,6 +1579,14 @@ PrefabInstance:
     - target: {fileID: 5227826117819878921, guid: 62ef7e8ffbecd404b983f40d286f13b0, type: 3}
       propertyPath: m_Name
       value: paddle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5227826117819878921, guid: 62ef7e8ffbecd404b983f40d286f13b0, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5227826117819878921, guid: 62ef7e8ffbecd404b983f40d286f13b0, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6734111820503837839, guid: 62ef7e8ffbecd404b983f40d286f13b0, type: 3}
       propertyPath: m_Size.x
