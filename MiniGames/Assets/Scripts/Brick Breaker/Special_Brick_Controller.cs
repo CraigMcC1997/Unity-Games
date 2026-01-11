@@ -7,7 +7,9 @@ public class Special_Brick_Controller : MonoBehaviour
 
     public void randomPickPowerUp()
     {
-        int randPowerUp = Random.Range(0, 3);
+        int PowerUpsCount = 4;
+
+        int randPowerUp = Random.Range(0, PowerUpsCount);
         Debug.Log("Picked power up: " + randPowerUp);
 
         switch (randPowerUp)
@@ -20,6 +22,9 @@ public class Special_Brick_Controller : MonoBehaviour
                 break;
             case 2:
                 decreasePaddleSize();
+                break;
+            case 3:
+                increaseBallSpeed();
                 break;
             default:
                 Debug.Log("No power up selected.");
@@ -46,6 +51,12 @@ public class Special_Brick_Controller : MonoBehaviour
         paddleController.decreasePaddleSize();
     }
 
+    void increaseBallSpeed()
+    {
+        Debug.Log("Increasing ball speed!");
+        var ball = GameObject.Find("Main Ball");
+        ball.GetComponent<BB_Ball_Controller>().IncreaseSpeed(50.0f);
+    }
 
     void OnDestroy()
     {

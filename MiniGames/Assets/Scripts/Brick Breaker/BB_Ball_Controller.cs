@@ -25,6 +25,11 @@ public class BB_Ball_Controller : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
+        if (score == null)
+        {
+            score = GameObject.Find("Score Manager").GetComponent<BB_Score_Manager>();
+        }
+
         m_Rigidbody = GetComponent<Rigidbody2D>();
         //Set the speed of the ball
         thrust = 250.0f;
@@ -58,9 +63,9 @@ public class BB_Ball_Controller : MonoBehaviour
         // }
     }
 
-    public void IncreaseSpeed()
+    public void IncreaseSpeed(float speed = 5.0f)
     {
-        thrust += 1.0f;
+        thrust += speed;
     }
 
     // Gets called at the start of the collision
